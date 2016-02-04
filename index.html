@@ -6,14 +6,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
+
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.css"/>
     </head>
 
     <body ng-controller="StoreController as storeCtrl">
 
-        {{storeCtrl.gem.name}}
-        {{storeCtrl.gem.price}}
+        <div ng-hide="storeCtrl.gem.soldOut">
 
-        <script type="text/javascript" src="js/angularjs_1.4.9.js"></script>
+            {{storeCtrl.gem.name}}
+            {{storeCtrl.gem.price}}
+
+            <button type="button" ng-click="storeCtrl.purchase()" ng-show="storeCtrl.gem.canPurchase">Add to cart</button>
+
+        </div>
+
+        <script type="text/javascript" src="angularjs-1.4.9/angularjs.js"></script>
         <script type="text/javascript" src="js/gemStore.js"></script>
     </body>
 
