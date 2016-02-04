@@ -8,9 +8,10 @@
         <title></title>
     </head>
 
-    <body>
+    <body ng-controller="StoreController as storeCtrl">
 
-        {{"Hola Mundo!"}}
+        {{storeCtrl.gem.name}}
+        {{storeCtrl.gem.price}}
 
         <script type="text/javascript" src="js/angularjs_1.4.9.js"></script>
         <script type="text/javascript" src="js/gemStore.js"></script>
