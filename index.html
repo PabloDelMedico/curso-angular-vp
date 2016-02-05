@@ -12,12 +12,12 @@
 
     <body ng-controller="StoreController as storeCtrl">
 
-        <div ng-hide="storeCtrl.gem.soldOut">
+        <div ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
 
-            {{storeCtrl.gem.name}}
-            {{storeCtrl.gem.price}}
+            {{gem.name}}
+            {{gem.price}}
 
-            <button type="button" ng-click="storeCtrl.purchase()" ng-show="storeCtrl.gem.canPurchase">Add to cart</button>
+            <button type="button" ng-click="storeCtrl.purchase(gem)">Add to cart</button>
 
         </div>
 

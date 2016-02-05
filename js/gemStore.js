@@ -1,15 +1,19 @@
 var app = angular.module('gemStore', []);
 
-var gem = {
+var gems = [{
     name: 'Azurite',
-    price: 2.95,
-    canPurchase: false,
-    soldOut: false
-};
+    price: 2.95
+}, {
+    name: 'Bloodstone',
+    price: 5.95
+}, {
+    name: 'Zircon',
+    price: 3.95
+},];
 
 app.controller('StoreController', function($log) {
-    this.gem = gem;
-    this.purchase = function() {
-        $log.warn('Purchase function not implemented yet');
+    this.gems = gems;
+    this.purchase = function(gem) {
+        $log.warn('Purchase function not implemented yet. ' + gem.name);
     };
 });
