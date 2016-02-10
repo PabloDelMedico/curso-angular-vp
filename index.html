@@ -15,13 +15,14 @@
         <div ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
 
             {{gem.name}}
-            {{gem.price}}
+            {{gem.price | currency}}
 
             <button type="button" ng-click="storeCtrl.purchase(gem)">Add to cart</button>
 
         </div>
 
         <script type="text/javascript" src="angularjs-1.4.9/angularjs.js"></script>
+        <script type="text/javascript" src="angularjs-1.4.9/angular-locale_es-ar.js"></script>
         <script type="text/javascript" src="js/gemStore.js"></script>
     </body>
 
