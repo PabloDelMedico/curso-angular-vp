@@ -15,7 +15,7 @@
     <body class="container" ng-controller="StoreController as storeCtrl">
 
         <div class="row">
-            <div class="panel panel-default col-xs-3" ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
+            <div class="panel panel-default col-xs-4" ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
                 <div class="panel-body">
 
                     <div class="gallery" ng-if="gem.images.length">
@@ -31,6 +31,29 @@
                         {{gem.name}}
                         <em class="pull-right">{{gem.price | currency}}</em>
                     </h3>
+
+                    <div ng-controller="TabController as tab">
+                        <ul class="nav nav-pills">
+                            <li role="presentation" ng-class="{'active':tab.isSet(1)}">
+                                <a href="#" ng-click="tab.setTab(1)">Description</a>
+                            </li>
+                            <li role="presentation" ng-class="{'active':tab.isSet(2)}">
+                                <a href="#" ng-click="tab.setTab(2)">Specs</a>
+                            </li>
+                            <li role="presentation" ng-class="{'active':tab.isSet(3)}">
+                                <a href="#" ng-click="tab.setTab(3)">Reviews</a>
+                            </li>
+                        </ul>
+                        <div ng-show="tab.isSet(1)">
+                            {{gem.description}}
+                        </div>
+                        <div ng-show="tab.isSet(2)">
+                            {{'Specs'}}
+                        </div>
+                        <div ng-show="tab.isSet(3)">
+                            {{gem.reviews}}
+                        </div>
+                    </div>
 
                     <button class="btn btn-primary btn-lg btn-block" type="button" ng-click="storeCtrl.purchase(gem)">Add to cart</button>
                 </div>
