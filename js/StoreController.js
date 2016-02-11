@@ -67,9 +67,9 @@
         color: '#000',
         faces: 6,
         images: [
-            /*"images/gem-06.gif",
+            "images/gem-06.gif",
             "images/gem-07.gif",
-            "images/gem-08.gif"*/
+            "images/gem-08.gif"
         ],
         reviews: [{
             stars: 1,
