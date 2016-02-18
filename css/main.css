@@ -3,5 +3,8 @@
     margin: 10px 0;
 }
 .review-panel-live {
-    color: 	#9c9c9c;
+    color: #9c9c9c;
+}
+.btn-block {
+    margin-top: 10px;
 }

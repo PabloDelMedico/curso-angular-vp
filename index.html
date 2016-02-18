@@ -66,44 +66,39 @@
                                     </label>
                                     {{review.body}}</div>
                             </div>
-
-                            <div class="row review-panel review-panel-live" ng-hide="form.$pristine">
-                                <h4>Live Preview</h4>
-                                <div>
-                                    <label>Stars:
-                                    </label>
-                                    {{review.stars}}</div>
-                                <div>
-                                    <label>Author:
-                                    </label>
-                                    {{review.author}}</div>
-                                <div>
-                                    <label>Body:
-                                    </label>
-                                    {{review.body}}</div>
-                            </div>
-
-                            <form name="form">
+                            <form name="form" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(gem)" class="clearfix" novalidate>
                                 <div class="form-group">
                                     <label for="stars">Stars</label>
-                                    <select class="form-control" id="stars" placeholder="Stars" ng-model="review.stars">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                    <select class="form-control" id="stars" placeholder="Stars" ng-model="reviewCtrl.review.stars" ng-options="item for item in [1,2,3,4,5]">
+                                        <option value="">Select</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="Author">Author</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" ng-model="review.author">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" ng-model="reviewCtrl.review.author">
                                 </div>
                                 <div class="form-group">
                                     <label for="Author">Body</label>
-                                    <textarea class="form-control" id="body" placeholder="Body" rows="8" ng-model="review.body"></textarea>
+                                    <textarea class="form-control" id="body" placeholder="Body" rows="8" ng-model="reviewCtrl.review.body"></textarea>
+                                </div>
+                                <div class="row review-panel review-panel-live" ng-hide="form.$pristine || form.$submitted">
+                                    <h4>Live Preview</h4>
+                                    <div>
+                                        <label>Stars:
+                                        </label>
+                                        {{reviewCtrl.review.stars}}</div>
+                                    <div>
+                                        <label>Author:
+                                        </label>
+                                        {{reviewCtrl.review.author}}</div>
+                                    <div>
+                                        <label>Body:
+                                        </label>
+                                        {{reviewCtrl.review.body}}</div>
                                 </div>
 
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-default pull-right">Submit</button>
+
                             </form>
 
                         </div>

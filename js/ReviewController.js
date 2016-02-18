@@ -7,6 +7,7 @@
 
         this.review = {};
         this.addReview = addReview;
+        var vm= this;
 
         function addReview(gem) {
             gem.reviews.push(this.review);
@@ -14,7 +15,7 @@
         }
 
         function resetReview() {
-            this.review = {};
+            vm.review = {};
         }
     }
 
