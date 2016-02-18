@@ -66,16 +66,17 @@
                                     </label>
                                     {{review.body}}</div>
                             </div>
-                            <form name="form" ng-controller="ReviewController as reviewCtrl" ng-submit="form.$valid && reviewCtrl.addReview(gem)" class="clearfix" novalidate>
-                                <div class="form-group">
+                            <form name="form" ng-controller="ReviewController as reviewCtrl" ng-submit="form.$valid && reviewCtrl.addReview(gem) && form.$setPristine()" class="clearfix" novalidate>
+
+                                <div class="form-group" ng-class="{'has-error': form.stars.$dirty && form.stars.$invalid || form.$submitted && form.stars.$invalid}">
                                     <label for="stars">Stars</label>
-                                    <select class="form-control" id="stars" placeholder="Stars" ng-model="reviewCtrl.review.stars" ng-options="item for item in [1,2,3,4,5]" required>
+                                    <select class="form-control" name="stars" id="stars" placeholder="Stars" ng-model="reviewCtrl.review.stars" ng-options="item for item in [1,2,3,4,5]" required>
                                         <option value="">Select</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ng-class="{'has-error': form.email.$dirty && form.email.$invalid || form.$submitted && form.email.$invalid}">
                                     <label for="Author">Author</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" ng-model="reviewCtrl.review.author" required>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" ng-model="reviewCtrl.review.author" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="Body">Body</label>

@@ -12,6 +12,7 @@
         function addReview(gem) {
             gem.reviews.push(this.review);
             resetReview();
+            return true;
         }
 
         function resetReview() {
