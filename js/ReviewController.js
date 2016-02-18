@@ -10,6 +10,7 @@
         var vm= this;
 
         function addReview(gem) {
+            this.review.createdOn = Date.now();
             gem.reviews.push(this.review);
             resetReview();
             return true;

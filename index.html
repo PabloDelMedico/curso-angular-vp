@@ -34,7 +34,7 @@
                     </h3>
 
                     <div ng-controller="TabController as tab">
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-tabs">
                             <li role="presentation" ng-class="{'active':tab.isSet(1)}">
                                 <a href="#" ng-click="tab.setTab(1)">Description</a>
                             </li>
@@ -45,13 +45,13 @@
                                 <a href="#" ng-click="tab.setTab(3)">Reviews</a>
                             </li>
                         </ul>
-                        <div ng-show="tab.isSet(1)">
+                        <div ng-show="tab.isSet(1)" class="tab-content">
                             {{gem.description}}
                         </div>
-                        <div ng-show="tab.isSet(2)">
+                        <div ng-show="tab.isSet(2)" class="tab-content">
                             {{'Specs'}}
                         </div>
-                        <div ng-show="tab.isSet(3)">
+                        <div ng-show="tab.isSet(3)" class="tab-content">
                             <div class="row review-panel" ng-repeat="review in gem.reviews">
                                 <div>
                                     <label>Stars:
@@ -65,6 +65,8 @@
                                     <label>Body:
                                     </label>
                                     {{review.body}}</div>
+                                <small class="pull-right">
+                                    {{review.createdOn | date}}</small>
                             </div>
                             <form name="form" ng-controller="ReviewController as reviewCtrl" ng-submit="form.$valid && reviewCtrl.addReview(gem) && form.$setPristine()" class="clearfix" novalidate>
 
