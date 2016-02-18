@@ -66,6 +66,46 @@
                                     </label>
                                     {{review.body}}</div>
                             </div>
+
+                            <div class="row review-panel review-panel-live" ng-hide="form.$pristine">
+                                <h4>Live Preview</h4>
+                                <div>
+                                    <label>Stars:
+                                    </label>
+                                    {{review.stars}}</div>
+                                <div>
+                                    <label>Author:
+                                    </label>
+                                    {{review.author}}</div>
+                                <div>
+                                    <label>Body:
+                                    </label>
+                                    {{review.body}}</div>
+                            </div>
+
+                            <form name="form">
+                                <div class="form-group">
+                                    <label for="stars">Stars</label>
+                                    <select class="form-control" id="stars" placeholder="Stars" ng-model="review.stars">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Author">Author</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Email" ng-model="review.author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Author">Body</label>
+                                    <textarea class="form-control" id="body" placeholder="Body" rows="8" ng-model="review.body"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form>
+
                         </div>
                     </div>
 
