@@ -2,7 +2,8 @@
     angular
         .module('gemStore')
         .controller('TabController', TabController)
-        .directive('productDescription', productDescription);
+        .directive('productDescription', productDescription)
+        .directive('productSpecs', productSpecs);
 
     function TabController() {
         this.tab = 1;
@@ -21,6 +22,13 @@
     function productDescription() {
         return {
             templateUrl: 'desc.html'
+        };
+    }
+
+    function productSpecs() {
+        return {
+            templateUrl: 'specs.html',
+            restrict: 'A'
         };
     }
 
