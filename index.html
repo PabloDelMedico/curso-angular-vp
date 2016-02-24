@@ -1,124 +1,133 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="gemStore">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
 
-        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
-        <script type="text/javascript" src="angularjs-1.4.9/angularjs.js"></script>
-    </head>
+    <script type="text/javascript" src="angularjs-1.4.9/angularjs.js"></script>
+</head>
 
-    <body class="container" ng-controller="StoreController as storeCtrl">
+<body class="container" ng-controller="StoreController as storeCtrl">
 
-        <div class="row">
-            <div class="panel panel-default col-xs-4" ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
-                <div class="panel-body">
+<div class="row">
+    <div class="panel panel-default col-xs-4" ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
+        <div class="panel-body">
 
-                    <div class="gallery" ng-if="gem.images.length" ng-controller="GalleryController as gallery">
-                        <img class="center-block img-thumbnail" ng-src="{{gem.images[gallery.current]}}"/>
-                        <ul class="clearfix list-unstyled">
-                            <li class="col-xs-4 pull-left " ng-repeat="image in gem.images">
-                                <img class="center-block img-responsive" ng-src="{{image}}" ng-click="gallery.setCurrent($index)"/>
-                            </li>
-                        </ul>
+            <div class="gallery" ng-if="gem.images.length" ng-controller="GalleryController as gallery">
+                <img class="center-block img-thumbnail" ng-src="{{gem.images[gallery.current]}}"/>
+                <ul class="clearfix list-unstyled">
+                    <li class="col-xs-4 pull-left " ng-repeat="image in gem.images">
+                        <img class="center-block img-responsive" ng-src="{{image}}" ng-click="gallery.setCurrent($index)"/>
+                    </li>
+                </ul>
+            </div>
+
+            <h3>
+                {{gem.name}}
+                <em class="pull-right">{{gem.price | currency}}</em>
+            </h3>
+
+            <div ng-controller="TabController as tab">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" ng-class="{'active':tab.isSet(1)}">
+                        <a href="#" ng-click="tab.setTab(1)">Description</a>
+                    </li>
+                    <li role="presentation" ng-class="{'active':tab.isSet(2)}">
+                        <a href="#" ng-click="tab.setTab(2)">Specs</a>
+                    </li>
+                    <li role="presentation" ng-class="{'active':tab.isSet(3)}">
+                        <a href="#" ng-click="tab.setTab(3)">Reviews</a>
+                    </li>
+                </ul>
+
+                <div ng-include="'desc.html'"></div>
+
+                <div ng-show="tab.isSet(2)" class="tab-content">
+                    {{'Specs'}}
+                </div>
+                <div ng-show="tab.isSet(3)" class="tab-content">
+                    <div class="row review-panel" ng-repeat="review in gem.reviews">
+                        <div>
+                            <label>Stars:
+                            </label>
+                            {{review.stars}}
+                        </div>
+                        <div>
+                            <label>Author:
+                            </label>
+                            {{review.author}}
+                        </div>
+                        <div>
+                            <label>Body:
+                            </label>
+                            {{review.body}}
+                        </div>
+                        <small class="pull-right">
+                            {{review.createdOn | date}}
+                        </small>
                     </div>
+                    <form name="form" ng-controller="ReviewController as reviewCtrl" ng-submit="form.$valid && reviewCtrl.addReview(gem) && form.$setPristine()" class="clearfix" novalidate>
 
-                    <h3>
-                        {{gem.name}}
-                        <em class="pull-right">{{gem.price | currency}}</em>
-                    </h3>
+                        <div class="form-group" ng-class="{'has-error': form.stars.$dirty && form.stars.$invalid || form.$submitted && form.stars.$invalid}">
+                            <label for="stars">Stars</label>
+                            <select class="form-control" name="stars" id="stars" placeholder="Stars" ng-model="reviewCtrl.review.stars" ng-options="item for item in [1,2,3,4,5]" required>
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': form.email.$dirty && form.email.$invalid || form.$submitted && form.email.$invalid}">
+                            <label for="Author">Author</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ng-model="reviewCtrl.review.author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Body">Body</label>
+                            <textarea class="form-control" id="body" placeholder="Body" rows="8" ng-model="reviewCtrl.review.body"></textarea>
+                        </div>
+                        <div class="row review-panel review-panel-live" ng-hide="form.$pristine || form.$submitted">
+                            <h4>Live Preview</h4>
 
-                    <div ng-controller="TabController as tab">
-                        <ul class="nav nav-tabs">
-                            <li role="presentation" ng-class="{'active':tab.isSet(1)}">
-                                <a href="#" ng-click="tab.setTab(1)">Description</a>
-                            </li>
-                            <li role="presentation" ng-class="{'active':tab.isSet(2)}">
-                                <a href="#" ng-click="tab.setTab(2)">Specs</a>
-                            </li>
-                            <li role="presentation" ng-class="{'active':tab.isSet(3)}">
-                                <a href="#" ng-click="tab.setTab(3)">Reviews</a>
-                            </li>
-                        </ul>
-                        <div ng-show="tab.isSet(1)" class="tab-content">
-                            {{gem.description}}
-                        </div>
-                        <div ng-show="tab.isSet(2)" class="tab-content">
-                            {{'Specs'}}
-                        </div>
-                        <div ng-show="tab.isSet(3)" class="tab-content">
-                            <div class="row review-panel" ng-repeat="review in gem.reviews">
-                                <div>
-                                    <label>Stars:
-                                    </label>
-                                    {{review.stars}}</div>
-                                <div>
-                                    <label>Author:
-                                    </label>
-                                    {{review.author}}</div>
-                                <div>
-                                    <label>Body:
-                                    </label>
-                                    {{review.body}}</div>
-                                <small class="pull-right">
-                                    {{review.createdOn | date}}</small>
+                            <div>
+                                <label>Stars:
+                                </label>
+                                {{reviewCtrl.review.stars}}
                             </div>
-                            <form name="form" ng-controller="ReviewController as reviewCtrl" ng-submit="form.$valid && reviewCtrl.addReview(gem) && form.$setPristine()" class="clearfix" novalidate>
-
-                                <div class="form-group" ng-class="{'has-error': form.stars.$dirty && form.stars.$invalid || form.$submitted && form.stars.$invalid}">
-                                    <label for="stars">Stars</label>
-                                    <select class="form-control" name="stars" id="stars" placeholder="Stars" ng-model="reviewCtrl.review.stars" ng-options="item for item in [1,2,3,4,5]" required>
-                                        <option value="">Select</option>
-                                    </select>
-                                </div>
-                                <div class="form-group" ng-class="{'has-error': form.email.$dirty && form.email.$invalid || form.$submitted && form.email.$invalid}">
-                                    <label for="Author">Author</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" ng-model="reviewCtrl.review.author" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Body">Body</label>
-                                    <textarea class="form-control" id="body" placeholder="Body" rows="8" ng-model="reviewCtrl.review.body"></textarea>
-                                </div>
-                                <div class="row review-panel review-panel-live" ng-hide="form.$pristine || form.$submitted">
-                                    <h4>Live Preview</h4>
-                                    <div>
-                                        <label>Stars:
-                                        </label>
-                                        {{reviewCtrl.review.stars}}</div>
-                                    <div>
-                                        <label>Author:
-                                        </label>
-                                        {{reviewCtrl.review.author}}</div>
-                                    <div>
-                                        <label>Body:
-                                        </label>
-                                        {{reviewCtrl.review.body}}</div>
-                                </div>
-
-                                <button type="submit" class="btn btn-default pull-right">Submit</button>
-
-                            </form>
-
+                            <div>
+                                <label>Author:
+                                </label>
+                                {{reviewCtrl.review.author}}
+                            </div>
+                            <div>
+                                <label>Body:
+                                </label>
+                                {{reviewCtrl.review.body}}
+                            </div>
                         </div>
-                    </div>
 
-                    <button class="btn btn-primary btn-lg btn-block" type="button" ng-click="storeCtrl.purchase(gem)">Add to cart
-                    </button>
+                        <button type="submit" class="btn btn-default pull-right">Submit</button>
+
+                    </form>
+
                 </div>
             </div>
-        </div>
 
-        <script type="text/javascript" src="angularjs-1.4.9/angular-locale_es-ar.js"></script>
-        <script type="text/javascript" src="js/gemStore.js"></script>
-        <script type="text/javascript" src="js/StoreController.js"></script>
-        <script type="text/javascript" src="js/TabController.js"></script>
-        <script type="text/javascript" src="js/GalleryController.js"></script>
-        <script type="text/javascript" src="js/ReviewController.js"></script>
-    </body>
+            <button class="btn btn-primary btn-lg btn-block" type="button" ng-click="storeCtrl.purchase(gem)">Add to
+                                                                                                              cart
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="angularjs-1.4.9/angular-locale_es-ar.js"></script>
+<script type="text/javascript" src="js/gemStore.js"></script>
+<script type="text/javascript" src="js/StoreController.js"></script>
+<script type="text/javascript" src="js/TabController.js"></script>
+<script type="text/javascript" src="js/GalleryController.js"></script>
+<script type="text/javascript" src="js/ReviewController.js"></script>
+</body>
 
 </html>
