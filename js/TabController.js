@@ -1,7 +1,8 @@
-(function() {
+(function () {
     angular
         .module('gemStore')
-        .controller('TabController', TabController);
+        .controller('TabController', TabController)
+        .directive('productDescription', productDescription);
 
     function TabController() {
         this.tab = 1;
@@ -15,6 +16,12 @@
         function isSet(tab) {
             return this.tab === tab;
         }
+    }
+
+    function productDescription() {
+        return {
+            templateUrl: 'desc.html'
+        };
     }
 
 })();

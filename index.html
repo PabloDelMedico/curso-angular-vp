@@ -46,7 +46,7 @@
                     </li>
                 </ul>
 
-                <div ng-include="'desc.html'"></div>
+                <product-description></product-description>
 
                 <div ng-show="tab.isSet(2)" class="tab-content">
                     {{'Specs'}}
@@ -81,7 +81,7 @@
                             </select>
                         </div>
                         <div class="form-group" ng-class="{'has-error': form.email.$dirty && form.email.$invalid || form.$submitted && form.email.$invalid}">
-                            <label for="Author">Author</label>
+                            <label for="email">Author</label>
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email" ng-model="reviewCtrl.review.author" required>
                         </div>
                         <div class="form-group">
