@@ -3,7 +3,8 @@
         .module('gemStore')
         .controller('TabController', TabController)
         .directive('productDescription', productDescription)
-        .directive('productSpecs', productSpecs);
+        .directive('productSpecs', productSpecs)
+        .directive('productReviews', productReviews);
 
     function TabController() {
         this.tab = 1;
@@ -29,6 +30,13 @@
         return {
             templateUrl: 'specs.html',
             restrict: 'A'
+        };
+    }
+
+    function productReviews() {
+        return {
+            templateUrl: 'reviews.html',
+            restrict: 'E'
         };
     }
 
