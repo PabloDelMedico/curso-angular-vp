@@ -19,15 +19,7 @@
     <div class="panel panel-default col-xs-4" ng-hide="gem.soldOut" ng-repeat="gem in storeCtrl.gems">
         <div class="panel-body">
 
-            <div class="gallery" ng-if="gem.images.length" ng-controller="GalleryController as gallery">
-                <img class="center-block img-thumbnail" ng-src="{{gem.images[gallery.current]}}"/>
-                <ul class="clearfix list-unstyled">
-                    <li class="col-xs-4 pull-left " ng-repeat="image in gem.images">
-                        <img class="center-block img-responsive" ng-src="{{image}}"
-                             ng-click="gallery.setCurrent($index)"/>
-                    </li>
-                </ul>
-            </div>
+            <product-gallery></product-gallery>
 
             <h3>
                 {{gem.name}}
@@ -46,7 +38,7 @@
 <script type="text/javascript" src="angularjs-1.4.9/angular-locale_es-ar.js"></script>
 <script type="text/javascript" src="js/gemStore.js"></script>
 <script type="text/javascript" src="js/StoreController.js"></script>
-<script type="text/javascript" src="js/GalleryController.js"></script>
+<script type="text/javascript" src="js/productGalleryDirective.js"></script>
 <script type="text/javascript" src="js/ReviewController.js"></script>
 <script type="text/javascript" src="js/productDescriptionDirective.js"></script>
 <script type="text/javascript" src="js/productSpecsDirective.js"></script>
