@@ -11,18 +11,33 @@
             controllerAs: 'gallery',
             scope: {
                 images: '='
-            }
+            },
+            bindToController: true
         };
 
         return directive;
     }
 
     function GalleryController() {
-        this.current = 0;
-        this.setCurrent = setCurrent;
+        var vm = this;
+
+        vm.current = getFirst();
+        vm.setCurrent = setCurrent;
+        vm.hasImages = hasImages();
 
         function setCurrent(value) {
-            this.current = value;
+            vm.current = value || getFirst();
+        }
+
+        function hasImages(){
+            return vm.images.length;
+        }
+
+        function getFirst() {
+            if (hasImages()){
+                return vm.images[0];
+            }
+
         }
     }
 

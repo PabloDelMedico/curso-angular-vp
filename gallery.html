@@ -1,9 +1,9 @@
-<div class="gallery" ng-if="images.length">
-    <img class="center-block img-thumbnail" ng-src="{{images[gallery.current]}}"/>
+<div class="gallery" ng-if="gallery.hasImages">
+    <img class="center-block img-thumbnail" ng-src="{{gallery.current}}"/>
     <ul class="clearfix list-unstyled">
-        <li class="col-xs-4 pull-left " ng-repeat="image in images">
+        <li class="col-xs-4 pull-left " ng-repeat="image in gallery.images">
             <img class="center-block img-responsive" ng-src="{{image}}"
-                 ng-click="gallery.setCurrent($index)"/>
+                 ng-click="gallery.setCurrent(image)"/>
         </li>
     </ul>
 </div>
