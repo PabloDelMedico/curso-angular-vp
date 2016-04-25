@@ -1,14 +1,17 @@
 (function() {
     angular
         .module('gemStore')
-        .directive('productGallery', productGallery);
+        .directive('gallery', gallery);
 
-    function productGallery() {
+    function gallery() {
         var directive = {
             restrict: 'E',
             templateUrl: 'gallery.html',
             controller: GalleryController,
-            controllerAs: 'gallery'
+            controllerAs: 'gallery',
+            scope: {
+                images: '='
+            }
         };
 
         return directive;

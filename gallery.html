@@ -1,7 +1,7 @@
-<div class="gallery" ng-if="gem.images.length">
-    <img class="center-block img-thumbnail" ng-src="{{gem.images[gallery.current]}}"/>
+<div class="gallery" ng-if="images.length">
+    <img class="center-block img-thumbnail" ng-src="{{images[gallery.current]}}"/>
     <ul class="clearfix list-unstyled">
-        <li class="col-xs-4 pull-left " ng-repeat="image in gem.images">
+        <li class="col-xs-4 pull-left " ng-repeat="image in images">
             <img class="center-block img-responsive" ng-src="{{image}}"
                  ng-click="gallery.setCurrent($index)"/>
         </li>
