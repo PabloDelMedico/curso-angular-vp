@@ -1,7 +1,18 @@
 (function() {
     angular
         .module('gemStore')
-        .controller('ReviewController', ReviewController);
+        .directive('reviews', review);
+
+    function review() {
+        var directive = {
+            restrict: 'E',
+            templateUrl: 'reviews.html',
+            controller: ReviewController,
+            controllerAs: 'reviewCtrl'
+        };
+
+        return directive;
+    }
 
     function ReviewController() {
 
