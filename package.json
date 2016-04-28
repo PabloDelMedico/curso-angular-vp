@@ -1,0 +1,14 @@
+{
+  "name": "angular-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": " ",
+  "author": "pablodelmedico@gmail.com",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-html2js": "^0.2.0"
+  }
+}

@@ -1,16 +1,24 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+
 .review-panel {
     border-bottom: 1px solid #DCDCDC;
     margin: 10px 0;
 }
+
 .review-panel-live {
     color: #9c9c9c;
 }
+
 .btn-block {
     margin-top: 10px;
 }
-.tab-content{
+
+.tab-content {
     padding: 10px;
 }
+
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color: #fff;
     background-color: #337ab7;

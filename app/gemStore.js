@@ -1,3 +1,3 @@
 (function() {
-    angular.module('gemStore', []);
+    angular.module('gemStore', ['app-templates']);
 })();
