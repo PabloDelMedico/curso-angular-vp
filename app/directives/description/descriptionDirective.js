@@ -5,7 +5,7 @@
 
     function description() {
         return {
-            templateUrl: 'desc.html',
+            templateUrl: 'app/directives/description/desc.html',
             transclude: true
         };
     }

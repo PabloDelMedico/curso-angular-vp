@@ -6,7 +6,7 @@
     function gallery() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'gallery.html',
+            templateUrl: 'app/directives/gallery/gallery.html',
             controller: GalleryController,
             controllerAs: 'gallery',
             scope: {

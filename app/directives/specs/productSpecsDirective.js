@@ -5,7 +5,7 @@
 
     function productSpecs() {
         return {
-            templateUrl: 'specs.html',
+            templateUrl: 'app/directives/specs/specs.html',
             restrict: 'A'
         };
     }

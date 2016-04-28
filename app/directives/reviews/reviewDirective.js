@@ -6,7 +6,7 @@
     function review() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'reviews.html',
+            templateUrl: 'app/directives/reviews/reviews.html',
             controller: ReviewController,
             controllerAs: 'reviewCtrl'
         };

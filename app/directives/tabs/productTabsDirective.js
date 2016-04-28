@@ -20,7 +20,7 @@
     function productTabs() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'tabs.html',
+            templateUrl: 'app/directives/tabs/tabs.html',
             controller: TabController,
             controllerAs: 'tab'
         };
